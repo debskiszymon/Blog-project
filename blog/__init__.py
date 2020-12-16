@@ -8,5 +8,27 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-# from yourapp import views
 from blog import routes, models
+
+def make_shell_context():
+  return {
+      "db": db,
+      "Entry": models.Entry
+  }
+
+# from faker import Faker
+# from blog.models import Entry, db
+
+# def generate_entries(how_many=10):
+#    fake = Faker()
+
+#    for i in range(how_many):
+#        post = Entry(
+#            title=fake.sentence(),
+#            body='\n'.join(fake.paragraphs(15)),
+#            is_published=True
+#        )
+#        db.session.add(post)
+#    db.session.commit()
+
+# generate_entries()
